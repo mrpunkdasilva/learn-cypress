@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+
 describe('Usuarios devem realizar o login', () => {
   let data;
 
@@ -9,19 +11,6 @@ describe('Usuarios devem realizar o login', () => {
 
   // Your test case
   it('Atravez da API da aplicação com sucesso', () => {
-    cy.request({
-      method: "POST",
-      url: "http://localhost:8080/auth/login",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: {
-        "email": data.email,
-        "password": data.password
-      }
-    })
-    .then((response) => {
-      cy.log(response);
-    });
+   cy.loginApi(faker.internet.email(), faker.internet.password());
   });
 });
